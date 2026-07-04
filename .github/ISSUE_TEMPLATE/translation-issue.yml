@@ -1,0 +1,108 @@
+name: "🐞 Translation issue report"
+description: "Report a bug in the English translation patch — broken text, a crash, a wrong translation, etc."
+title: "[Issue]: "
+labels: ["translation-issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping test the Grandia: Digital Museum English patch!
+
+        Please fill in what you can. The two things that help most are a **screenshot**
+        of the problem and a **savestate** taken right at the failing spot — there are
+        fields for both near the bottom.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What's the problem?
+      description: "Describe the issue. What did you expect, and what actually happened?"
+      placeholder: "e.g. The item name in the shop menu is cut off / overlaps the price."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Type of issue
+      options:
+        - "Crash or freeze (game stops responding)"
+        - "Garbled / broken / missing text"
+        - "Text overflows or is cut off"
+        - "Mistranslation, typo, or awkward wording"
+        - "Other"
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Where did it happen?
+      description: "The screen, menu, room, or scene — as specific as you can be."
+      placeholder: "e.g. Item shop in the museum lobby / opening cutscene after they fall / monster encyclopedia"
+    validations:
+      required: true
+
+  - type: input
+    id: build
+    attributes:
+      label: Which patch build were you running?
+      description: "The release name or version of the patch/disc you were playing, if you know it."
+      placeholder: "e.g. rc_13"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: emulator
+    attributes:
+      label: Which emulator (or hardware) were you using?
+      options:
+        - "YMIR"
+        - "Mednafen / Beetle Saturn (RetroArch)"
+        - "SSF"
+        - "Kronos"
+        - "Yabause"
+        - "Real Sega Saturn hardware"
+        - "Other (note it in the description)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: "How can this be reached from a savestate or from the start? Number the steps if you can."
+      placeholder: |
+        1. Load the attached savestate
+        2. Open the menu / talk to the NPC / ...
+        3. The text appears broken
+    validations:
+      required: false
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Screenshot and savestate
+      description: |
+        **Drag and drop your files into this box** (or paste a screenshot directly).
+
+        Please include:
+        - 📷 A **screenshot** showing the problem.
+        - 💾 A **savestate** from your emulator at the failing spot.
+
+        ⚠️ GitHub won't accept a raw `.savestate` (or other emulator state) file directly —
+        **put it in a `.zip` first**, then drag the zip in here. Mentioning which emulator
+        the state is from (above) helps a lot, since each emulator's format is different.
+      placeholder: "Drop your screenshot and zipped savestate here…"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before submitting
+      options:
+        - label: "I attached a screenshot of the problem."
+          required: false
+        - label: "I attached a savestate (zipped) at the failing spot."
+          required: false

@@ -1,0 +1,3 @@
+# Keep "blank" issues available for the maintainer's own dev notes,
+# while steering testers to the structured translation-issue form.
+blank_issues_enabled: true

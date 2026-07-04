@@ -1,0 +1,13 @@
+# Never commit game data. This repo ships only the xdelta3 patch — no disc images,
+# no extracted game text, no emulator savestates.
+*.bin
+*.cue
+*.iso
+*.chd
+*.img
+*.savestate
+*.zip
+
+# OS / editor cruft
+.DS_Store
+*.swp
