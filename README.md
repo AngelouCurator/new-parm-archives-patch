@@ -2,15 +2,12 @@
 
 A fan translation of *Grandia: Digital Museum* (Sega Saturn, Japan-only) from Japanese to English.
 
-Part of the **New Parm Archives** project.
+## Motivation
 
-## Why this exists
+This is passion project with the primary goal of finally playing my personal grandia digital museum backup in english on a superstation one. Sharing it in case it lets you do the same. **Happy gaming!** 🎮
 
-This started as a toy **AI learning experiment** — an exploration of self-driven emulator
-harnesses (having an AI agent reverse-engineer disc/text formats, inject text, and verify its own
-work in an emulator loop). It grew into a passion project with one selfish goal: to finally play
-my own personal **Grandia: Digital Museum** backup, in English. Sharing it in case it lets you do
-the same. **Happy gaming!** 🎮
+I had a secondary goal of a toy AI learning experiment where I explore a agent driven emulator harness and validation loop (having an AI agent reverse-engineer disc/text formats, inject text, and verify its own work in an emulator loop). This was surprisingly effective.
+
 
 ## What's in here
 
@@ -33,12 +30,11 @@ expected disc — see *Reporting issues* below.
 
 ## Known limitations & untested areas
 
-This is a work in progress by one person (well, one person and an AI). Some parts aren't fully
-verified — **a savestate near any of these is especially helpful** if you hit a problem:
+This is a work in progress. Some parts aren't fully verified — **a savestate near any of these is especially helpful** if you hit a problem:
 
-- **Minigames** — not all of them have been unlocked in testing, so the translated text in the
+- **Minigames** — not all of them have been unlocked in my saves, so the translated text in the
   ones later in the game may not have been seen in-game yet.
-- **The Theater** — not fully unlocked either, so some captions there may be untranslated or have
+- **The Theater** — not fully unlocked in my saves either, so some captions there may be untranslated or have
   **off timing** (text appearing too early/late).
 - **Crashes** — expect some. ⚠️ **I'm not responsible for any save corruption, lost progress, or
   other issues that result from using this patch — use it at your own risk.** That said, **crash
@@ -46,7 +42,7 @@ verified — **a savestate near any of these is especially helpful** if you hit 
   before the crash is gold).
 - **Untranslated pockets** — a few menus/areas were left in Japanese where the format was too hard
   to crack (for example, the **monster-book stat panel**). These are known and I'll get to them
-  over time — but if you find one I haven't listed, please report it.
+  over time but if you find one I haven't listed, please report it.
 
 ## Reporting issues
 
@@ -61,13 +57,12 @@ short form that walks you through it. The four things that help most:
 - 📝 **A description**: what you expected vs. what you actually saw, where it happened, and the
   patch version (the `rcNN` in the filename).
 
-Clear, specific, reproducible reports get fixed fastest. Thank you for playing — and for helping
-make the translation better.
+Clear, specific, reproducible reports get fixed fastest. Thank you for helping make this project better.
 
 ## Acknowledgments
 
 Deep thanks to **[TrekkiesUnite118](https://github.com/TrekkiesUnite118)** and the upstream Grandia
-translation **methods** — the reverse-engineering of the Saturn disc/text formats, fonts, and
+translation methods — the reverse-engineering of the Saturn disc/text formats, fonts, and
 control codes (documented on their
 [wiki](https://github.com/TrekkiesUnite118/GrandiaTranslation/wiki)) that this project's pipeline
 builds on. This patch stands on that groundwork and would not exist without it.
