@@ -18,13 +18,16 @@ Just the patch — a binary `xdelta3` delta and instructions. **No game data is 
 repo deliberately ships no disc image, no game text, and no copyrighted assets. You must supply
 your own dump of the Japanese *Digital Museum* disc.
 
+See **[RELEASE-NOTES.md](RELEASE-NOTES.md)** for a showcase of what's translated (with GIFs) and
+the technical approach, and **[KNOWN-ISSUES.md](KNOWN-ISSUES.md)** for current limitations.
+
 ## Applying the patch
 
 You need: your own Japanese *Digital Museum* disc image (the Track 1 `.bin` the patch targets) and
 [`xdelta3`](https://github.com/jmacd/xdelta).
 
 ```bash
-xdelta3 -d -s "Your-Japanese-Track1.bin" Grandia-DM-EN-rc26.Track1.xdelta3 "Grandia-DM-EN-Track1.bin"
+xdelta3 -d -s "Your-Japanese-Track1.bin" Grandia-DM-EN-rc48.Track1.xdelta3 "Grandia-DM-EN-Track1.bin"
 ```
 
 Then rebuild/mount the `.cue` with the patched Track 1 and run it in a Saturn emulator (developed
