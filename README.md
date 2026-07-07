@@ -43,8 +43,7 @@ This is a work in progress. Some parts aren't fully verified — **a savestate n
   other issues that result from using this patch — use it at your own risk.** That said, **crash
   reports are genuinely useful** and I do look at them, so please file them (a savestate from just
   before the crash is gold).
-- **Untranslated pockets** — a few menus/areas were left in Japanese where the format was too hard
-  to crack (for example, the **monster-book stat panel**). These are known and I'll get to them
+- **Untranslated pockets** — a few menus/areas were left in Japanese. I'll get to known ones
   over time but if you find one I haven't listed, please report it.
 
 ## Reporting issues
