@@ -17,6 +17,11 @@ However, the core of the museum, dungeons, and menus are explorable. It's been a
 
 Here is a look at the current state of the project across various parts of the game.
 
+#### Opening Sequence
+A fresh **New Game**, cold-booted straight from the patched disc and captured headless in the YMIR emulator: the party tumbles into the museum, comes to, and the intro plays out in English ("Welcome to the Alent Museum!" → "L-Liete!?").
+
+![Opening Sequence](media/00_intro_cinematic.gif)
+
 #### Dialogue & Story
 Much of the script and in-game text is now translated, allowing you to follow the story and character interactions.
 
