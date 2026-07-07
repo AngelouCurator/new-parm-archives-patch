@@ -10,9 +10,9 @@ I had a secondary goal of a toy AI learning experiment where I explore a agent d
 
 ## Showcase
 
-The full opening cinematic — cold-booted straight from the patched disc, captured headless in the **YMIR** emulator (GAME ARTS → ESP → the *Grandia: Digital Museum* title screen):
+The opening sequence — a fresh New Game cold-booted straight from the patched disc, captured headless in the **YMIR** emulator. The party tumbles into the museum, comes to, and the intro plays out in English ("Welcome to the Alent Museum!" → "L-Liete!?"):
 
-![Opening cinematic](media/00_intro_cinematic.gif)
+![Opening sequence](media/00_intro_cinematic.gif)
 
 A look at the current state of the translation across the game:
 
