@@ -12,8 +12,6 @@ savestate, even if it's on this list (it helps confirm severity and reproduction
 
 - **Crashes** — expect some. Crash reports are genuinely useful and I do look at them, so please
   file them. **A savestate from just before the crash is gold.**
-- *(The older title-screen "attract mode" freeze — the title screen crashing if you waited too
-  long on it — was addressed in this build. If you still see it, please report it.)*
 
 ## Untested / partially-verified content
 
@@ -25,13 +23,9 @@ savestate, even if it's on this list (it helps confirm severity and reproduction
 
 ## Untranslated pockets
 
-- A few menus/areas were left in Japanese where the format was too hard to crack — for example, the
-  **monster-book stat panel** (monster stats are still in Japanese). These are known and I'll get
-  to them over time. If you find an untranslated pocket that isn't listed here, please report it.
+- A few menus/areas were left in Japanese I'll get to these over time but if you find an untranslated pocket that isn't listed here, please report it.
 
 ## Known visual bugs
-
-- **Moves/Magic growth screen** — a text-cutoff issue on that screen is known and being worked on.
 - General **graphical glitches** and some **janky UI/text styling** remain in places; polish is
   in flight.
 
