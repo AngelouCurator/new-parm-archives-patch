@@ -10,6 +10,15 @@ I'm a huge fan of the Grandia series but have been unable to fully enjoy my Digi
 
 However, the core of the museum, dungeons, and menus are explorable. It's been a blast for me to experience it this way, and I wanted to give other fans a chance to do the same, even in this incomplete state. Any issue reports from those playing the game would be appreciated.
 
+### rc48b (2026-07-07) — boot fix
+
+The rc48 patch failed to boot in Mednafen and on real hardware (thanks for the report and the
+CDMage diagnosis!). Root cause: the build pipeline patched sector payloads in the raw
+MODE1/2352 track without regenerating the trailing EDC/ECC error-correction bytes, so every
+modified sector failed checksum verification on anything stricter than YMIR. rc48b regenerates
+EDC/ECC across all modified sectors — the full track now passes a sector-integrity check
+(0/204,858 bad sectors) with no manual CDMage repair needed. Game content is unchanged from rc48.
+
 ---
 
 ### Project Showcase

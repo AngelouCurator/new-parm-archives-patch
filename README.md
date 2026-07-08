@@ -56,15 +56,47 @@ the technical approach, and **[KNOWN-ISSUES.md](KNOWN-ISSUES.md)** for current l
 
 ## Applying the patch
 
-You need: your own Japanese *Digital Museum* disc image (the Track 1 `.bin` the patch targets) and
-[`xdelta3`](https://github.com/jmacd/xdelta).
+> **rc48b (2026-07-07):** fixes the boot failure reported against rc48 — the earlier patch left
+> stale EDC/ECC error-correction data on modified sectors, which YMIR tolerated but Mednafen and
+> real hardware (which verify sector checksums) rejected. rc48b regenerates EDC/ECC on every
+> modified sector; the disc now passes a full-track sector-integrity check (0/204,858 bad) with
+> no CDMage repair step needed. Game content is identical to rc48.
 
-```bash
-xdelta3 -d -s "Your-Japanese-Track1.bin" Grandia-DM-EN-rc48.Track1.xdelta3 "Grandia-DM-EN-Track1.bin"
-```
+You need: your own Japanese *Digital Museum* disc image (the raw MODE1/2352 Track 1 `.bin` the
+patch targets) and [`xdelta3`](https://github.com/jmacd/xdelta).
 
-Then rebuild/mount the `.cue` with the patched Track 1 and run it in a Saturn emulator (developed
-and verified against **YMIR**). If the patch refuses to apply, your source track doesn't match the
+1. Check your source dump is the expected one (Rev A):
+
+   ```bash
+   md5 "Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 1).bin"
+   # expected: 59b19105615ca37886e1e0542ff2967e
+   ```
+
+2. Apply the patch (the `-B` flag matters — the source file is ~455 MB):
+
+   ```bash
+   xdelta3 -d -B 800000000 -s "Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 1).bin" \
+       Grandia-DM-EN-rc48b.Track1.xdelta3  Track1.bin
+   md5 Track1.bin
+   # expected: 46f24e8d3fbfbc9cc92dba58878259e1
+   ```
+
+3. Put `Track1.bin` next to your **unmodified** original Track 2 (audio) and a cue sheet:
+
+   ```
+   FILE "Track1.bin" BINARY
+     TRACK 01 MODE1/2352
+       INDEX 01 00:00:00
+   FILE "Track2.bin" BINARY
+     TRACK 02 AUDIO
+       INDEX 00 00:00:00
+       INDEX 01 00:02:00
+   ```
+
+4. Load the `.cue` in your Saturn emulator. Verified in **YMIR** and sector-checksum-valid for
+   emulators that enforce EDC/ECC (e.g. **Mednafen**).
+
+If the patch refuses to apply or the md5s don't match, your source track doesn't match the
 expected disc — see *Reporting issues* below.
 
 ## Known limitations & untested areas
