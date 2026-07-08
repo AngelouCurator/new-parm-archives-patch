@@ -70,6 +70,16 @@ the technical approach, and **[KNOWN-ISSUES.md](KNOWN-ISSUES.md)** for current l
 You need: your own Japanese *Digital Museum* disc image (the raw MODE1/2352 Track 1 `.bin` the
 patch targets) and [`xdelta3`](https://github.com/jmacd/xdelta).
 
+**Easiest path** — one script that verifies your dump, applies the patch, and assembles a
+ready-to-play folder (Track1.bin + Track2.bin + cue):
+
+```bash
+./apply-patch.sh "path/to/... (Track 1).bin" "path/to/... (Track 2).bin"
+# -> ./patched/Grandia-DM-EN.cue  — load this in your emulator
+```
+
+Or do it by hand:
+
 1. Check your source dump is the expected one (Rev A):
 
    ```bash
