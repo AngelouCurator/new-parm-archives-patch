@@ -10,14 +10,26 @@ I'm a huge fan of the Grandia series but have been unable to fully enjoy my Digi
 
 However, the core of the museum, dungeons, and menus are explorable. It's been a blast for me to experience it this way, and I wanted to give other fans a chance to do the same, even in this incomplete state. Any issue reports from those playing the game would be appreciated.
 
-### rc48b (2026-07-07) — boot fix
+### rc49 (2026-07-07) — boot fix + skill-name mapping fix
 
-The rc48 patch failed to boot in Mednafen and on real hardware (thanks for the report and the
-CDMage diagnosis!). Root cause: the build pipeline patched sector payloads in the raw
-MODE1/2352 track without regenerating the trailing EDC/ECC error-correction bytes, so every
-modified sector failed checksum verification on anything stricter than YMIR. rc48b regenerates
-EDC/ECC across all modified sectors — the full track now passes a sector-integrity check
-(0/204,858 bad sectors) with no manual CDMage repair needed. Game content is unchanged from rc48.
+Two community-reported fixes (thank you for the reports, the CDMage diagnosis, and the
+savestates — they made both root causes findable!):
+
+1. **rc48 failed to boot in Mednafen and on real hardware.** The build pipeline patched sector
+   payloads in the raw MODE1/2352 track without regenerating the trailing EDC/ECC
+   error-correction bytes, so every modified sector failed checksum verification on anything
+   stricter than YMIR. rc49 regenerates EDC/ECC across all modified sectors — the full track
+   passes a sector-integrity check (0/204,858 bad sectors) with no manual CDMage repair needed.
+
+2. **Skill lists showed the wrong names/descriptions** (e.g. Feena's skill screen listing
+   Justin's "Heaven&Earth Cut", with descriptions to match). Root cause, traced live in the
+   emulator: the game engine masks each text-section offset down to 4-byte alignment when it
+   builds its string pointers. Every original (Japanese) text section is 4-aligned, but our
+   rebuilt English tables weren't — the engine's string walk started a few bytes early, swallowed
+   an extra terminator, and every skill/spell name and description shifted by one entry. All
+   rebuilt text sections are now explicitly 4-aligned (plus a fix for multi-byte text codes that
+   embed a 0x00 byte, which shifted some descriptions the same way). Verified in-game on the
+   reported savestate.
 
 ---
 

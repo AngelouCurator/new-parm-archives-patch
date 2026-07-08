@@ -56,11 +56,16 @@ the technical approach, and **[KNOWN-ISSUES.md](KNOWN-ISSUES.md)** for current l
 
 ## Applying the patch
 
-> **rc48b (2026-07-07):** fixes the boot failure reported against rc48 — the earlier patch left
-> stale EDC/ECC error-correction data on modified sectors, which YMIR tolerated but Mednafen and
-> real hardware (which verify sector checksums) rejected. rc48b regenerates EDC/ECC on every
-> modified sector; the disc now passes a full-track sector-integrity check (0/204,858 bad) with
-> no CDMage repair step needed. Game content is identical to rc48.
+> **rc49 (2026-07-07):** two community-reported fixes.
+> 1. **Boot failure (rc48):** the earlier patch left stale EDC/ECC error-correction data on
+>    modified sectors — YMIR tolerated it, but Mednafen and real hardware (which verify sector
+>    checksums) rejected the disc. Every modified sector's EDC/ECC is now regenerated; the track
+>    passes a full sector-integrity check (0/204,858 bad) with no CDMage repair step needed.
+> 2. **Wrong skill names/descriptions** (e.g. Feena's skill list showing Justin's
+>    "Heaven&Earth Cut"): the game engine masks text-section offsets to 4-byte alignment when
+>    it builds its string pointers, and rebuilt English text tables violated that alignment —
+>    shifting every skill/spell name and description by one entry on some screens. All rebuilt
+>    text sections are now 4-aligned (plus a related string-terminator fix), verified in-game.
 
 You need: your own Japanese *Digital Museum* disc image (the raw MODE1/2352 Track 1 `.bin` the
 patch targets) and [`xdelta3`](https://github.com/jmacd/xdelta).
@@ -76,9 +81,9 @@ patch targets) and [`xdelta3`](https://github.com/jmacd/xdelta).
 
    ```bash
    xdelta3 -d -B 800000000 -s "Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 1).bin" \
-       Grandia-DM-EN-rc48b.Track1.xdelta3  Track1.bin
+       Grandia-DM-EN-rc49.Track1.xdelta3  Track1.bin
    md5 Track1.bin
-   # expected: 46f24e8d3fbfbc9cc92dba58878259e1
+   # expected: 0978b223c8cc060d9ee5e4dc5cdad09c
    ```
 
 3. Put `Track1.bin` next to your **unmodified** original Track 2 (audio) and a cue sheet:
