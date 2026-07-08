@@ -28,6 +28,9 @@ savestate, even if it's on this list (it helps confirm severity and reproduction
 ## Known visual bugs
 - General **graphical glitches** and some **janky UI/text styling** remain in places; polish is
   in flight.
+- **Stale-tile "ghosting"** when loading a savestate taken inside a menu and re-opening it:
+  leftover tiles from the old screen can show through until you fully exit the venue (back to
+  the museum floor) and re-enter. Cosmetic — fresh sessions render clean.
 
 ## What helps most in a report
 
