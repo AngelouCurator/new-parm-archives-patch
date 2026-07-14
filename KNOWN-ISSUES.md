@@ -24,13 +24,12 @@ savestate, even if it's on this list (it helps confirm severity and reproduction
 ## Untranslated pockets
 
 - A few menus/areas were left in Japanese I'll get to these over time but if you find an untranslated pocket that isn't listed here, please report it.
+- battle gold icon is cut-off
+- battle pop-ups are not all translated
 
 ## Known visual bugs
 - General **graphical glitches** and some **janky UI/text styling** remain in places; polish is
   in flight.
-- **Stale-tile "ghosting"** when loading a savestate taken inside a menu and re-opening it:
-  leftover tiles from the old screen can show through until you fully exit the venue (back to
-  the museum floor) and re-enter. Cosmetic — fresh sessions render clean.
 
 ## What helps most in a report
 

@@ -5,8 +5,13 @@
 *.iso
 *.chd
 *.img
+*.sscd
+*.SSCD
 *.savestate
 *.zip
+
+# Locally built helper used to validate SSP archives; not a release artifact.
+/tools/saturn-patcher-egui-macos/
 
 # OS / editor cruft
 .DS_Store

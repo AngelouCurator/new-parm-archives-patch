@@ -10,28 +10,18 @@ I'm a huge fan of the Grandia series but have been unable to fully enjoy my Digi
 
 However, the core of the museum, dungeons, and menus are explorable. It's been a blast for me to experience it this way, and I wanted to give other fans a chance to do the same, even in this incomplete state. Any issue reports from those playing the game would be appreciated.
 
-### rc49 (2026-07-07) — boot fix + skill-name mapping fix
+### alpha-0.1.0 (2026-07-12) — first community-format patch release
 
-Two community-reported fixes (thank you for the reports, the CDMage diagnosis, and the
-savestates — they made both root causes findable!):
+https://www.youtube.com/watch?v=k1NVBCUZcbI
+- Renamed release artifacts from internal `rcNN` labels to semantic alpha versions.
+- Added a pure-delta `.ssp` and an xdelta3 patch, both built from the current translation build.
+- battle arena coming together for comparable look to original Grandia on PSX
+- resolved some missing english in menus
+- resolved crashes on keycard station
+- improved theater display text and buttons to select theater movies
+- increased overall stability
+- title screen updated with EnigmaUnboxed image
 
-1. **rc48 failed to boot in Mednafen and on real hardware.** The build pipeline patched sector
-   payloads in the raw MODE1/2352 track without regenerating the trailing EDC/ECC
-   error-correction bytes, so every modified sector failed checksum verification on anything
-   stricter than YMIR. rc49 regenerates EDC/ECC across all modified sectors — the full track
-   passes a sector-integrity check (0/204,858 bad sectors) with no manual CDMage repair needed.
-
-2. **Skill lists showed the wrong names/descriptions** (e.g. Feena's skill screen listing
-   Justin's "Heaven&Earth Cut", with descriptions to match). Root cause, traced live in the
-   emulator: the game engine masks each text-section offset down to 4-byte alignment when it
-   builds its string pointers. Every original (Japanese) text section is 4-aligned, but our
-   rebuilt English tables weren't — the engine's string walk started a few bytes early, swallowed
-   an extra terminator, and every skill/spell name and description shifted by one entry. All
-   rebuilt text sections are now explicitly 4-aligned (plus a fix for multi-byte text codes that
-   embed a 0x00 byte, which shifted some descriptions the same way). Verified in-game on the
-   reported savestate.
-
----
 
 ### Project Showcase
 ***A quick note on the GIFs below:** Many of these were captured during various stages of development using AI assistance (largely by Claude Opus 4.8, with some Fable usage). The final patch has since tightened the release up and translated many of the Japanese text elements you might still see in these animations*
@@ -100,22 +90,6 @@ Battles are largely functional with translated commands, skills, and enemy names
 
 *The Moves/Magic growth screen (showing a known visual bug with text cutoff—work in progress!):*
 ![Moves Growth Menu](media/13_menu_moves_growth.gif)
-
----
-### High-Level Technical Approach
-
-This project was largely accomplished using a mix of AI assistance and custom tooling. Here is the basic workflow:
-
-1.  **Text Extraction:** All Japanese text was extracted from the game files, leveriging the fantastic tools and references published by TrekkiesUnite118 in the Saturn modding community.
-2.  **Dictionary Building:** A master dictionary of terms was created from previous *Grandia 1* translation efforts and online docs to ensure character names, items, and places remained consistent with series canon. This list was kept up to date as we added to it for a consistent experience.
-3.  **AI-Assisted Translation:** AI models (primarily Opus 4.8 and some Fable) were used to translate the game scene-by-scene. This was a collaborative process where I reviewed the AI's output on a webpage and provided corrections to guide the tone and style.
-4.  **Text Re-Injection and Assembly:** The process of getting new, often longer, English text back into the game was refined for the intro scene and then expanded across all scenes. This involved modifying the game to use a smaller font and dynamically expanding text boxes to fit the dialogue without resorting to truncations.
-5.  **Headless Validation Harness:** A "headless" automated testing system was built using the YMIR emulator. This enabled me to solve graphical or gameplay stability issues without going crazy manually validating every step the AI took along the way. It looked like:
-    *   Providing an AI agent with a save state and description of a bug (e.g., "this menu is untranslated," often with screenshots).
-    *   The agent would then "play" the game in the background, iterating through potential code changes until it found a valid fix.
-    *   Finally, the agent would report back with a summary of the resolution and a proof-of-success GIF. All the GIFs in this post were generated this way!
-
----
 
 ### How to Help
 
