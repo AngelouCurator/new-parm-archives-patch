@@ -77,11 +77,9 @@ your own dump of the Japanese *Digital Museum* disc.
 | --- | --- |
 | `Grandia-DM-EN-alpha-0.1.0.ssp` | **Sega Saturn Patcher** patch — the preferred format. |
 | `Grandia-DM-EN-alpha-0.1.0.Track1.xdelta3` | **xdelta3** binary delta against Track 1 — the fallback format. |
-| `apply-patch.sh` | Convenience script for the xdelta path (macOS/Linux): verifies, patches, assembles a playable folder. |
 
 The build pipeline that produces these lives in a separate repo:
-**[new-parm-archives-tools](https://github.com/AngelouCurator/new-parm-archives-tools)**. See
-[`custom_tools/`](custom_tools/) for a pointer.
+**[new-parm-archives-tools](https://github.com/AngelouCurator/new-parm-archives-tools)**.
 
 ## Source disc (Redump)
 
@@ -109,155 +107,17 @@ md5sum "Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 1).bin" # Linux
 
 If your MD5 doesn't match, you have a different dump (or a bad one) and the patch will not apply.
 
-## Patch format status
+## Applying the patch
 
-Both patch formats are included and verified against the Redump source. The xdelta patch reproduces
-the reference Track 1 byte-for-byte. The `.ssp` reconstructs each changed ISO file byte-for-byte;
-its applier may choose a different valid disc layout, so do not compare its resulting whole-track
-MD5 with the xdelta result. The `.ssp` contains BSDIFF deltas only — no replacement game files — and
-has been successfully applied with the official Windows Sega Saturn Patcher.
+Use [Sega Saturn Patcher](https://segaxtreme.net/resources/sega-saturn-patcher.73/) and the
+`Grandia-DM-EN-alpha-0.1.0.ssp` file:
 
-## Applying the patch — Option A: Sega Saturn Patcher (preferred)
+1. Select the `.cue` file for your unmodified Redump disc.
+2. Select `Grandia-DM-EN-alpha-0.1.0.ssp` as the patch file.
+3. Enable **Separate Track Files**, then choose where to save the patched image.
+4. Click **Patch** and load the resulting `.cue` file in your emulator, ODE, or burning software.
 
-[Sega Saturn Patcher](https://segaxtreme.net/resources/sega-saturn-patcher.73/) by **Knight0fDragon**
-is the standard applier for Saturn translation patches. It understands the disc's ISO9660 filesystem,
-applies changes per-file, and — importantly — **regenerates the Mode-1 EDC and ECC P/Q error-correction
-data** on every sector it touches, which is what real hardware and accuracy-focused emulators
-(Mednafen) check. It also lets *you* choose the output container, which is why it's the recommended
-path for ODE users.
-
-1. Download **Sega Saturn Patcher** and the `Grandia-DM-EN-alpha-0.1.0.ssp` file from this repo.
-
-   ![Step 1 — download](images/01-download.png)
-
-2. Launch Saturn Patcher and click **Select Cue/CCD** — point it at the **`.cue`** of your
-   *unmodified* Redump dump (the `.cue`, not the `.bin`).
-
-   ![Step 2 — select the source cue](images/02-select-cue.png)
-
-3. Click **Select Patch File** and choose `Grandia-DM-EN-alpha-0.1.0.ssp`.
-
-   ![Step 3 — select the patch](images/03-select-patch.png)
-
-4. Pick your **output format** — this is the choice that matters. See
-   [Choosing your output format](#choosing-your-output-format) below.
-
-   ![Step 4 — output format](images/04-output-format.png)
-
-5. **Tick "Separate Track Files."** This disc has 2 tracks (data + CD-DA audio), and without this
-   option the audio track can be mishandled.
-
-   ![Step 5 — separate track files](images/05-separate-tracks.png)
-
-6. Click **Patch** and choose where to save. Wait for it to finish — it rebuilds the whole image, so
-   give it a minute.
-
-   ![Step 6 — patching](images/06-patch.png)
-
-7. Load the resulting `.cue` (or `.ccd`) on your emulator, ODE, or burned disc. Done.
-
-## Applying the patch — Option B: xdelta3 (fallback)
-
-This reproduces my exact Track 1, byte for byte. It always outputs **BIN/CUE**; if you need CCD/IMG
-for an ODE, convert afterwards (see below).
-
-### Easiest: the script (macOS / Linux)
-
-```bash
-./apply-patch.sh "path/to/... (Track 1).bin" "path/to/... (Track 2).bin"
-# -> ./patched/Grandia-DM-EN.cue   — load this
-```
-
-It verifies your source MD5, applies the patch, verifies the output MD5, copies your audio track
-through untouched, and writes a matching cue sheet.
-
-### By hand
-
-1. Verify your source dump — see [Source disc](#source-disc-redump) above.
-
-2. Apply the delta. **The `-B` flag matters**: the source is ~455 MB and exceeds xdelta3's default
-   source window.
-
-   ```bash
-   xdelta3 -d -B 800000000 \
-       -s "Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 1).bin" \
-       Grandia-DM-EN-alpha-0.1.0.Track1.xdelta3 \
-       Track1.bin
-   ```
-
-3. Verify the result:
-
-   ```bash
-   md5 Track1.bin
-   # expected: 0188783aed16c167c7c27d196863fdbb
-   ```
-
-4. Put the patched `Track1.bin` next to your **unmodified original** Track 2 and write a cue sheet:
-
-   ```
-   FILE "Track1.bin" BINARY
-     TRACK 01 MODE1/2352
-       INDEX 01 00:00:00
-   FILE "Track2.bin" BINARY
-     TRACK 02 AUDIO
-       INDEX 00 00:00:00
-       INDEX 01 00:02:00
-   ```
-
-5. Load the `.cue`.
-
-### On Windows
-
-Use a GUI xdelta frontend — [Delta Patcher](https://github.com/marco-calautti/DeltaPatcher) or
-xdeltaUI — with the Track 1 `.bin` as source and the `.xdelta3` as patch, then assemble the cue by
-hand as in step 4.
-
-## Choosing your output format
-
-Pick based on **where you're going to play it**:
-
-| Target | Format | Notes |
-| --- | --- | --- |
-| Emulators (YMIR, Mednafen, SSF) | **CUE/BIN** | The default. What `apply-patch.sh` gives you. |
-| **Rhea / Phoebe** ODEs | **CCD/IMG** | These ODEs want CCD/IMG. Use Saturn Patcher and select CCD/IMG output. |
-| MODE / Satiator / Fenrir | **CUE/BIN** | These read BIN/CUE directly. |
-| Burning to CD-R | **CUE/BIN** | Burn the cue (not the bin) with a raw-mode burner. |
-
-In **all** multi-track cases, enable **"Separate Track Files."**
-
-### ⚠️ The patched disc is bigger than the original
-
-This is the one place this patch deviates from the usual "same-size, in-place" Saturn patch, and
-it's worth understanding:
-
-| | Sectors | Bytes |
-| --- | --- | --- |
-| Original Track 1 | 193,620 | 455,394,240 |
-| **Patched Track 1** | **209,354** | **492,400,608** |
-| Growth | +15,734 | +37,006,368 (+8.1%) |
-
-English text is stored in a less dense encoding than the original Japanese, and several files
-(dialogue, viewers, item descriptions) had to be **relocated and grown** past the end of the
-original data. Practical consequences:
-
-- **It still fits a CD-R comfortably.** Full disc is ~208,742 sectors ≈ **46 minutes** of a 74-minute
-  disc.
-- **Your TOC changes.** Track 2 now starts 15,734 sectors later. Use the `.cue`/`.ccd` produced by
-  the patch process — **do not** reuse the original Redump `.cue`/`.ccd` and just swap the data
-  track in. The track lengths no longer match and you'll get a broken disc.
-- **Cold boot matters.** The game rebuilds its internal file-index table from the ISO directory only
-  at cold boot. Relocated files resolve correctly on a fresh boot; a savestate carrying a stale
-  index from a *different* build can mis-resolve them. If something looks wrong after loading an old
-  savestate, cold-boot the disc first.
-
-## Mac / Linux
-
-- **Sega Saturn Patcher** is a Windows app. A cross-platform reimplementation of the applier exists:
-  **[saturn-patcher-egui](https://github.com/ralfguth/saturn-patcher-egui)** (Rust; builds on macOS
-  and Linux). It's third-party — I haven't validated this specific patch against it, so treat it as
-  best-effort and fall back to xdelta if it misbehaves.
-- The **xdelta3** path works natively everywhere: `brew install xdelta` (macOS) or
-  `apt install xdelta3` (Debian/Ubuntu). `apply-patch.sh` wraps it.
+The `.xdelta3` file is included only as an advanced fallback for users who prefer that format.
 
 ## Known limitations & untested areas
 
