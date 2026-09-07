@@ -1,26 +1,17 @@
 New Parm Archives — Grandia: Digital Museum English Translation Patch
 ====================================================================
 
-The MIT License in LICENSE covers only the ORIGINAL content authored for this
-repository (this README, documentation, and the issue templates).
+The MIT License in LICENSE covers original documentation and helper scripts in
+this repository. It does not grant rights to Grandia, Grandia: Digital Museum,
+or any third-party game data, text, characters, or audiovisual material.
 
-It does NOT relicense, and this project claims no rights over, the following:
+The distributed xdelta3 file is a binary difference that is unusable without a
+matching source disc supplied by the user. No disc image or playable game is
+included.
 
-* "Grandia" and "Grandia: Digital Museum" and all game assets, text, characters,
-  and audiovisual content are the property of their respective rights holders
-  (Game Arts / ESP / Sega and successors). This repository contains none of that
-  data. The distributed .xdelta3 file is a binary DIFF that is meaningless without,
-  and produces output only from, a copy of the game you already own.
+English terminology follows the official PlayStation Grandia localization for
+series consistency. Names and short terms remain the property of their
+respective rights holders.
 
-* The reverse-engineering methods, file-format documentation, and tooling this
-  project's build pipeline relies on originate with TrekkiesUnite118's Grandia
-  translation work (https://github.com/TrekkiesUnite118/GrandiaTranslation).
-  Those tools are not included or redistributed here; they are credited with
-  gratitude. See that project for its own terms.
-
-* English terminology follows the official PlayStation Grandia localization for
-  consistency. Proper nouns and short item/skill/enemy names are used only as
-  terminology and carry their own upstream rights.
-
-If you are a rights holder with a concern, please open an issue and it will be
+If you are a rights holder with a concern, please open an issue so it can be
 addressed promptly.

@@ -1,18 +1,10 @@
-# Never commit game data. This repo ships only the xdelta3 patch — no disc images,
-# no extracted game text, no emulator savestates.
+.DS_Store
+patched/
 *.bin
 *.cue
 *.iso
 *.chd
 *.img
-*.sscd
-*.SSCD
-*.savestate
+*.ssp
+!Grandia-DM-EN-alpha-0.2.0.ssp
 *.zip
-
-# Locally built helper used to validate SSP archives; not a release artifact.
-/tools/saturn-patcher-egui-macos/
-
-# OS / editor cruft
-.DS_Store
-*.swp
