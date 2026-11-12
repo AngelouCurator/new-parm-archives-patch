@@ -1,4 +1,35 @@
-# Grandia: Digital Museum — English Translation alpha-0.2.0
+# Grandia: Digital Museum — English Translation alpha-0.2.1
+
+A bug-fix update to alpha-0.2.0. Thanks to the players who reported these.
+
+## Fixes since alpha-0.2.0
+
+- **Freeze before the Officers' Room boss fight.** Entering the Officers' Room in Garlyle Base
+  Block 2 showed a garbled box and hung instead of playing the Mullen/Baal scene. The scene now
+  plays and the battle starts ([issue #1](https://github.com/AngelouCurator/new-parm-archives-patch/issues/1)).
+  The same fix also corrects 15 similar branch jumps in Parm's town scripts; those were caught by
+  the build check rather than seen in play.
+- **Item-use banner in battle.** Using an item showed another item's stats in the top banner
+  (for example "ATK+80, Skill power+1") instead of the item's name. It now shows the name.
+- **Stray Japanese character after door names.** Door previews showed a Japanese へ after the
+  English destination ("Garlyle Base - Entrance へ"). It is removed, matching the English Grandia.
+
+See `KNOWN-ISSUES.md` for what is still open.
+
+## Artifacts
+
+Both included patches apply only to the Redump Rev A 10M image whose Track 1 MD5 is
+`59b19105615ca37886e1e0542ff2967e`:
+
+- `Grandia-DM-EN-alpha-0.2.1.ssp` — Sega Saturn Patcher archive for the original `.cue`.
+- `Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3` — Track 1 delta for xdelta3 and the included scripts.
+
+The SSP contains 107 binary-delta file changes and has been verified against the alpha-0.2.1
+reference build. The xdelta decodes byte-for-byte to that same build.
+
+---
+
+# alpha-0.2.0
 
 This is the version I have been playing on and off over the past month. I will continue to
 iterate on it as I have time.

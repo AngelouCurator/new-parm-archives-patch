@@ -1,11 +1,11 @@
-# Grandia: Digital Museum English Translation alpha-0.2.0
+# Grandia: Digital Museum English Translation alpha-0.2.1
 # sha256  filename
-00e7530b980d87d283bea4738da21cf690a2b7c2f8e7878f08e3a64b8f921462  Grandia-DM-EN-alpha-0.2.0.Track1.xdelta3
-70c56e3ca15f0b77fa34047dd0416ccb63b5e019fc8f20ec59602ec4a189fe80  Grandia-DM-EN-alpha-0.2.0.ssp
-570d724b89bc22c7aa978d6484eb8448f3a1ed12f65f9390e115c8717c2f0092  decoded-Track1.bin
+b6ca354d0bf2391005e036bba30e9174627f3a6f9e4598a74a8f85047aae9e55  Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3
+ae95c312fa3c6c2cecd3d6193120007c1d32ab4f20d92489c92d9c063d1d8605  Grandia-DM-EN-alpha-0.2.1.ssp
+5c0d24088c5b8f96817711437732ee1184d36cd56601309a4858097d461f07ae  decoded-Track1.bin
 
 # MD5 reference values
 # source Track 1: 59b19105615ca37886e1e0542ff2967e
-# xdelta3 patch: 62647e846286cb3cb265e6ecd9da2c36
-# SSP patch: efba555948ba2eb030b4c2e89b87152d
-# decoded Track 1: 933c380f4d31aff22a191ca3cadd6532
+# xdelta3 patch: 0890295129990bc73983542a7133fc34
+# SSP patch: 96aee599893d7ec82d4a9a7d40c8d4ff
+# decoded Track 1: 292e5dda58eacf61c469db7788f67d76

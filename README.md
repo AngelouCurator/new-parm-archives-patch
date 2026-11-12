@@ -5,9 +5,10 @@ companion to *Grandia*.
 
 ![Grandia: Digital Museum title screen](media/00-title-screen.gif)
 
-> **Release status:** **alpha-0.2.0** is the version I have been playing on and off for the past
-> month. I will continue to iterate on it as I have time. Please report anything that looks
-> wrong—especially with a screenshot and a savestate.
+> **Release status:** **alpha-0.2.1** is a bug-fix update to alpha-0.2.0. It fixes the freeze
+> before the Officers' Room boss fight and two text problems players reported; see
+> `RELEASE-NOTES.md`. Please report anything that looks wrong—especially with a screenshot and a
+> savestate.
 
 ## Welcome back to Grandia
 
@@ -101,19 +102,19 @@ If Track 1 does not match that hash, the patch will not apply.
 
 | File | Use |
 | --- | --- |
-| `Grandia-DM-EN-alpha-0.2.0.ssp` | Apply with Sega Saturn Patcher to the original `.cue`; enable **Separate Track Files**. |
-| `Grandia-DM-EN-alpha-0.2.0.Track1.xdelta3` | Apply to Track 1 with the included scripts or another xdelta3 frontend. |
+| `Grandia-DM-EN-alpha-0.2.1.ssp` | Apply with Sega Saturn Patcher to the original `.cue`; enable **Separate Track Files**. |
+| `Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3` | Apply to Track 1 with the included scripts or another xdelta3 frontend. |
 
 ## Applying the patch
 
 ### Sega Saturn Patcher (recommended)
 
 1. Open the `.cue` from the unmodified Redump dump in Sega Saturn Patcher.
-2. Select `Grandia-DM-EN-alpha-0.2.0.ssp` as the patch.
+2. Select `Grandia-DM-EN-alpha-0.2.1.ssp` as the patch.
 3. Enable **Separate Track Files**, choose an output location, and patch.
 4. Load the generated `.cue` file, rather than an individual `.bin`, in your emulator, ODE, or burning software.
 
-The SSP and xdelta patches produce the same alpha-0.2.0 translation data. The SSP is intended for
+The SSP and xdelta patches produce the same alpha-0.2.1 translation data. The SSP is intended for
 the Sega Saturn Patcher workflow; use the xdelta method below if you prefer a command-line or
 cross-platform workflow.
 
@@ -136,18 +137,18 @@ The large source window flag is required:
 ```bash
 xdelta3 -d -B 800000000 \
   -s "Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 1).bin" \
-  Grandia-DM-EN-alpha-0.2.0.Track1.xdelta3 \
+  Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3 \
   Track1.bin
 ```
 
-The alpha-0.2.0 patched Track 1 should be `492,417,072` bytes with MD5
-`933c380f4d31aff22a191ca3cadd6532`. Keep the original Track 2 unchanged and use the cue sheet
+The alpha-0.2.1 patched Track 1 should be `492,567,600` bytes with MD5
+`292e5dda58eacf61c469db7788f67d76`. Keep the original Track 2 unchanged and use the cue sheet
 created by `apply-patch.sh`.
 
 ### Windows
 
 Run `apply-patch.ps1` from PowerShell, or apply
-`Grandia-DM-EN-alpha-0.2.0.Track1.xdelta3` to the matching Track 1 with an xdelta frontend such as Delta
+`Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3` to the matching Track 1 with an xdelta frontend such as Delta
 Patcher. Copy the original Track 2 alongside the patched data track and use the included cue sheet.
 Always launch the `.cue`, not an individual `.bin`.
 
@@ -170,7 +171,7 @@ Reports from Mednafen, SSF, MiSTer/SuperStation, ODEs, and original hardware are
 Before reporting, check the repository's open issues. Then **[open an issue](../../issues/new/choose)**
 with as much of the following as possible:
 
-- the patch version (`alpha-0.2.0`, for example);
+- the patch version (`alpha-0.2.1`, for example);
 - emulator or hardware setup;
 - a screenshot;
 - steps to reproduce; and

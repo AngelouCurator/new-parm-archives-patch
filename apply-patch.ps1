@@ -4,9 +4,9 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$Patch = Join-Path $PSScriptRoot "Grandia-DM-EN-alpha-0.2.0.Track1.xdelta3"
+$Patch = Join-Path $PSScriptRoot "Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3"
 $SourceMd5 = "59b19105615ca37886e1e0542ff2967e"
-$OutputMd5 = "933c380f4d31aff22a191ca3cadd6532"
+$OutputMd5 = "292e5dda58eacf61c469db7788f67d76"
 $OutputDir = Join-Path $PSScriptRoot "patched"
 $OutputTrack = Join-Path $OutputDir "Track1.bin"
 

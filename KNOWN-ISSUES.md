@@ -1,6 +1,6 @@
 # Known issues and release-candidate notes
 
-Alpha-0.2.0 has the outstanding issues below which I'll get to when life is less busy.
+Alpha-0.2.1 has the outstanding issues below which I'll get to when life is less busy.
 
 - During battle an arrow shows up for some spells in bottom left such as Fiora.
 - Battle level-up messages and counter notifications are still untranslated.

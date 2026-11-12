@@ -2,10 +2,10 @@
 set -eu
 
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-PATCH="$SCRIPT_DIR/Grandia-DM-EN-alpha-0.2.0.Track1.xdelta3"
+PATCH="$SCRIPT_DIR/Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3"
 OUTPUT_DIR="$SCRIPT_DIR/patched"
 SOURCE_MD5='59b19105615ca37886e1e0542ff2967e'
-OUTPUT_MD5='933c380f4d31aff22a191ca3cadd6532'
+OUTPUT_MD5='292e5dda58eacf61c469db7788f67d76'
 
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
   echo "Usage: $0 SOURCE_TRACK1.bin [SOURCE_TRACK2.bin]" >&2
