@@ -107,6 +107,14 @@ If Track 1 does not match that hash, the patch will not apply.
 
 ## Applying the patch
 
+The release page lists the two patch files. The helper scripts (`apply-patch.sh`,
+`apply-patch.ps1`) are **not** separate downloads: they are in this repository, together with the
+patch files. Get everything at once with **Source code (zip)** on the release page (or **Code →
+Download ZIP** here), extract it, and run the script from that folder.
+
+You do not need a special cue sheet. The Redump `.cue` lists each track as its own file, so it
+stays valid after patching as long as the file names match (see [Cue sheet](#cue-sheet)).
+
 ### Sega Saturn Patcher (recommended)
 
 1. Open the `.cue` from the unmodified Redump dump in Sega Saturn Patcher.
@@ -120,7 +128,8 @@ cross-platform workflow.
 
 ### macOS and Linux
 
-Install `xdelta3`, then run the included helper with the two tracks from your unmodified dump:
+Install `xdelta3` (for example `sudo apt install xdelta3` or `brew install xdelta3`), then, from
+the extracted repository folder, run the helper with the two tracks from your unmodified dump:
 
 ```bash
 ./apply-patch.sh \
@@ -128,7 +137,8 @@ Install `xdelta3`, then run the included helper with the two tracks from your un
   "Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 2).bin"
 ```
 
-Load `patched/Grandia-DM-EN.cue` in your emulator or optical-drive emulator.
+It checks both hashes, writes `patched/Track1.bin`, copies Track 2 to `patched/Track2.bin`, and
+writes `patched/Grandia-DM-EN.cue`. Load that `.cue` in your emulator or optical-drive emulator.
 
 ### Manual xdelta3 method
 
@@ -142,22 +152,52 @@ xdelta3 -d -B 800000000 \
 ```
 
 The alpha-0.2.1 patched Track 1 should be `492,567,600` bytes with MD5
-`292e5dda58eacf61c469db7788f67d76`. Keep the original Track 2 unchanged and use the cue sheet
-created by `apply-patch.sh`.
+`292e5dda58eacf61c469db7788f67d76`. Keep the original Track 2 unchanged and set up a
+[cue sheet](#cue-sheet).
 
 ### Windows
 
-Run `apply-patch.ps1` from PowerShell, or apply
-`Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3` to the matching Track 1 with an xdelta frontend such as Delta
-Patcher. Copy the original Track 2 alongside the patched data track and use the included cue sheet.
-Always launch the `.cue`, not an individual `.bin`.
+From the extracted repository folder, run `apply-patch.ps1` in PowerShell with the same two
+tracks (`xdelta3` must be on `PATH`):
+
+```powershell
+.\apply-patch.ps1 "Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 1).bin" `
+                  "Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 2).bin"
+```
+
+If PowerShell refuses to run the script, start it with
+`powershell -ExecutionPolicy Bypass -File .\apply-patch.ps1 ...` instead. It writes the same
+`patched/` folder, cue sheet included. Alternatively, apply
+`Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3` to the matching Track 1 with an xdelta frontend such as
+Delta Patcher and set up a [cue sheet](#cue-sheet). Always launch the `.cue`, not an individual
+`.bin`.
+
+### Cue sheet
+
+Only needed when you patch by hand (the scripts and Sega Saturn Patcher write their own). Either:
+
+- **reuse the original Redump `.cue`:** give the patched track the original Track 1 file name
+  (`Grandia - Digital Museum (Japan) (Rev A) (10M) (Track 1).bin`) and keep it in the same folder
+  as the original Track 2 and `.cue`; or
+- **write a new one** named `Grandia-DM-EN.cue` next to `Track1.bin` (patched) and `Track2.bin`
+  (original):
+
+```text
+FILE "Track1.bin" BINARY
+  TRACK 01 MODE1/2352
+    INDEX 01 00:00:00
+FILE "Track2.bin" BINARY
+  TRACK 02 AUDIO
+    INDEX 00 00:00:00
+    INDEX 01 00:02:00
+```
 
 ## Compatibility notes
 
 - The patched data track is larger than the original because English text and several translated
   assets were safely relocated. It still fits comfortably on a standard CD-R.
-- Use the generated cue sheet. Reusing the original cue with the larger patched Track 1 gives
-  Track 2 the wrong start time.
+- Track 2 is not patched. Each track is its own file in the cue sheet, so the larger patched
+  Track 1 does not move Track 2. Only a merged single-`.bin` image would need a new cue.
 - Cold-boot when changing patch versions. Savestates can retain text, graphics, and disc-file
   pointers from the build on which they were created.
 - Modified sectors have regenerated Mode 1 EDC/ECC data for real-hardware and strict-emulator

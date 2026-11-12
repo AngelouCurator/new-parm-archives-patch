@@ -24,6 +24,9 @@ Both included patches apply only to the Redump Rev A 10M image whose Track 1 MD5
 - `Grandia-DM-EN-alpha-0.2.1.ssp` — Sega Saturn Patcher archive for the original `.cue`.
 - `Grandia-DM-EN-alpha-0.2.1.Track1.xdelta3` — Track 1 delta for xdelta3 and the included scripts.
 
+The helper scripts (`apply-patch.sh` for macOS/Linux, `apply-patch.ps1` for Windows) are in
+**Source code (zip)** together with both patches; see `README.md` for the steps and the cue sheet.
+
 The SSP contains 107 binary-delta file changes and has been verified against the alpha-0.2.1
 reference build. The xdelta decodes byte-for-byte to that same build.
 
